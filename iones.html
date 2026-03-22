@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Carga Positiva y Negativa — Figura 2-7</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;1,400&family=Rajdhani:wght@500;600;700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #f7f4ee;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 28px 16px;
+    font-family: 'Crimson Pro', Georgia, serif;
+    color: #222;
+  }
+
+  header {
+    text-align: center;
+    margin-bottom: 26px;
+  }
+
+  header h1 {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: #334;
+  }
+
+  header p {
+    font-style: italic;
+    font-size: 0.9rem;
+    color: #778;
+    margin-top: 3px;
+  }
+
+  /* ── Step labels ── */
+  .step-label {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #556;
+    text-align: center;
+    margin-bottom: 6px;
+  }
+
+  /* ── Row layout ── */
+  .row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+
+  .step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+
+  /* Arrow between steps */
+  .arrow {
+    font-size: 1.6rem;
+    color: #99a;
+    align-self: center;
+    margin-top: -20px;
+    padding: 0 4px;
+  }
+
+  canvas { display: block; }
+
+  .caption {
+    max-width: 200px;
+    text-align: center;
+    font-style: italic;
+    font-size: 0.78rem;
+    color: #556;
+    line-height: 1.5;
+    margin-top: 4px;
+  }
+
+  .caption strong {
+    font-style: normal;
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 700;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    color: #334;
+    display: block;
+    margin-bottom: 2px;
+  }
+
+  /* Section divider */
+  .section-title {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: #778;
+    text-align: center;
+    margin: 22px 0 10px;
+    border-top: 1px solid #ddd;
+    padding-top: 18px;
+    width: 100%;
+    max-width: 720px;
+  }
+
+  /* Ion badge */
+  .ion-badge {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 2px 8px;
+    border-radius: 3px;
+    margin-top: 2px;
+  }
+
+  .pos { background: #ffe0d0; color: #a02000; border: 1px solid #d06040; }
+  .neg { background: #d0e8ff; color: #003080; border: 1px solid #4070c0; }
+  .neu { background: #f0f0f0; color: #445; border: 1px solid #bbb; }
+
+  /* Info box */
+  .info-box {
+    margin-top: 24px;
+    max-width: 680px;
+    background: #fff;
+    border: 1px solid #dde;
+    border-radius: 7px;
+    padding: 14px 20px;
+    font-size: 0.85rem;
+    color: #334;
+    line-height: 1.7;
+  }
+
+  .info-box h3 {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #445;
+    margin-bottom: 8px;
+  }
+
+  .info-box table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.8rem;
+    margin-top: 8px;
+  }
+
+  .info-box th {
+    text-align: left;
+    padding: 5px 10px;
+    background: #f4f6f9;
+    border-bottom: 2px solid #dde;
+    letter-spacing: 0.08em;
+    font-weight: 700;
+    color: #334;
+  }
+
+  .info-box td {
+    padding: 5px 10px;
+    border-bottom: 1px solid #eef;
+    color: #334;
+  }
+
+  .red { color: #a02000; font-weight: 700; }
+  .blue { color: #003080; font-weight: 700; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Carga Positiva y Carga Negativa</h1>
+  <p>Figura 2-7 — Formación de iones en el cloruro de hidrógeno (HCl)</p>
+</header>
+
+<!-- ══ STEP (a): Atoms neutral ══════════════════════════════════════════ -->
+<div class="step-label">( a ) Átomos neutros</div>
+<div class="row">
+  <div class="step">
+    <canvas id="h-neutral" width="140" height="140"></canvas>
+    <span class="ion-badge neu">Neutro</span>
+    <div class="caption">
+      <strong>Átomo de Hidrógeno</strong>
+      1 protón · 1 electrón
+    </div>
+  </div>
+
+  <div class="arrow">+</div>
+
+  <div class="step">
+    <canvas id="cl-neutral" width="180" height="180"></canvas>
+    <span class="ion-badge neu">Neutro</span>
+    <div class="caption">
+      <strong>Átomo de Cloro</strong>
+      17 protones · 17 electrones
+    </div>
+  </div>
+</div>
+
+<!-- ══ STEP (b): Combined HCl ══════════════════════════════════════════ -->
+<div class="section-title">( b ) Se combinan → Cloruro de Hidrógeno gaseoso (HCl)</div>
+<div class="row">
+  <div class="step">
+    <canvas id="h-combined" width="140" height="140"></canvas>
+    <div class="caption">
+      <strong>H en HCl</strong>
+      Comparte su electrón
+    </div>
+  </div>
+  <div class="arrow" style="font-size:1.2rem;color:#aab;">⟵ compartido ⟶</div>
+  <div class="step">
+    <canvas id="cl-combined" width="180" height="180"></canvas>
+    <div class="caption">
+      <strong>Cl en HCl</strong>
+      Recibe el electrón
+    </div>
+  </div>
+</div>
+
+<!-- ══ STEP (c): Ions ══════════════════════════════════════════════════ -->
+<div class="section-title">( c ) Al disolver en agua → se separan en iones</div>
+<div class="row">
+  <div class="step">
+    <canvas id="h-ion" width="140" height="140"></canvas>
+    <span class="ion-badge pos">Ion H⁺ positivo</span>
+    <div class="caption">
+      <strong>Ion Hidrógeno</strong>
+      1 protón · 0 electrones
+    </div>
+  </div>
+
+  <div class="arrow">+</div>
+
+  <div class="step">
+    <canvas id="cl-ion" width="180" height="180"></canvas>
+    <span class="ion-badge neg">Ion Cl⁻ negativo</span>
+    <div class="caption">
+      <strong>Ion Cloruro</strong>
+      17 protones · 18 electrones
+    </div>
+  </div>
+</div>
+
+<!-- ══ INFO BOX ════════════════════════════════════════════════════════ -->
+<div class="info-box">
+  <h3>¿Qué sucedió?</h3>
+  <table>
+    <tr>
+      <th>Estado</th>
+      <th>Hidrógeno (H)</th>
+      <th>Cloro (Cl)</th>
+      <th>Carga neta</th>
+    </tr>
+    <tr>
+      <td>Átomo neutro</td>
+      <td>1p · 1e⁻</td>
+      <td>17p · 17e⁻</td>
+      <td>0 · 0</td>
+    </tr>
+    <tr>
+      <td>HCl gaseoso</td>
+      <td colspan="2" style="text-align:center;">Electrón compartido</td>
+      <td>0 (molécula)</td>
+    </tr>
+    <tr>
+      <td>En agua (iones)</td>
+      <td class="red">1p · 0e⁻ → H⁺</td>
+      <td class="blue">17p · 18e⁻ → Cl⁻</td>
+      <td><span class="red">+1</span> · <span class="blue">−1</span></td>
+    </tr>
+  </table>
+</div>
+
+<!-- ══ SCRIPT ══════════════════════════════════════════════════════════ -->
+<script>
+// ── Generic atom draw helper ─────────────────────────────────────────────
+function Atom(canvasId, shells, nucLabel, nucColor, nucStroke, nucTextColor, orbitDash) {
+  const cv  = document.getElementById(canvasId);
+  if (!cv) return;
+  const ctx = cv.getContext('2d');
+  const W = cv.width, H = cv.height;
+  const cx = W/2, cy = H/2;
+  const eR = 5.5;
+
+  function drawOrbit(r, dash) {
+    ctx.save();
+    ctx.beginPath();
+    ctx.arc(cx, cy, r, 0, Math.PI*2);
+    ctx.strokeStyle = 'rgba(100,110,130,0.28)';
+    ctx.lineWidth = 1;
+    if (dash) ctx.setLineDash([4, 3]);
+    ctx.stroke();
+    ctx.setLineDash([]);
+    ctx.restore();
+  }
+
+  function drawNucleus(r) {
+    ctx.save();
+    ctx.shadowColor = nucStroke + '44';
+    ctx.shadowBlur = 10;
+    const g = ctx.createRadialGradient(cx-r*0.3, cy-r*0.3, 1, cx, cy, r);
+    g.addColorStop(0, '#fff');
+    g.addColorStop(0.5, nucColor);
+    g.addColorStop(1, nucStroke);
+    ctx.beginPath();
+    ctx.arc(cx, cy, r, 0, Math.PI*2);
+    ctx.fillStyle = g;
+    ctx.fill();
+    ctx.strokeStyle = nucStroke;
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
+    ctx.restore();
+    ctx.fillStyle = nucTextColor;
+    ctx.font = `bold ${r < 18 ? 10 : 12}px "Rajdhani", sans-serif`;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(nucLabel, cx, cy);
+  }
+
+  function drawElectron(x, y, color, stroke) {
+    ctx.save();
+    ctx.shadowColor = stroke + '44';
+    ctx.shadowBlur = 5;
+    const g = ctx.createRadialGradient(x-eR*0.3, y-eR*0.3, 0.5, x, y, eR);
+    g.addColorStop(0, '#fff');
+    g.addColorStop(1, color);
+    ctx.beginPath();
+    ctx.arc(x, y, eR, 0, Math.PI*2);
+    ctx.fillStyle = g;
+    ctx.fill();
+    ctx.strokeStyle = stroke;
+    ctx.lineWidth = 0.9;
+    ctx.stroke();
+    ctx.restore();
+  }
+
+  let last = null;
+  function loop(ts) {
+    if (!last) last = ts;
+    const dt = Math.min((ts - last)/1000, 0.05);
+    last = ts;
+    for (const s of shells) if (s.n > 0) s.t += s.speed * dt;
+    ctx.clearRect(0, 0, W, H);
+    for (let i = shells.length-1; i >= 0; i--) {
+      const s = shells[i];
+      drawOrbit(s.r, orbitDash);
+      for (let j = 0; j < s.n; j++) {
+        const angle = s.t + (j / s.n) * Math.PI * 2;
+        drawElectron(cx + s.r * Math.cos(angle), cy + s.r * Math.sin(angle), s.color, s.stroke);
+      }
+    }
+    drawNucleus(shells[0].nucR || 16);
+    requestAnimationFrame(loop);
+  }
+  requestAnimationFrame(loop);
+}
+
+// ─── (a) NEUTRAL HYDROGEN ─────────────────────────────────────────────────
+Atom('h-neutral', [
+  { nucR:14, r:50, n:1, speed:1.6, t:0, color:'#c0d0f0', stroke:'#3050a0' }
+], '+1', '#e0eeff', '#4060b0', '#102050', true);
+
+// ─── (a) NEUTRAL CHLORINE ─────────────────────────────────────────────────
+Atom('cl-neutral', [
+  { nucR:18, r:0,  n:0, speed:0,   t:0, color:'#aaa', stroke:'#555' }, // placeholder row for nucR
+  { nucR:18, r:30, n:2, speed:2.0, t:0, color:'#90c090', stroke:'#307030' },
+  { nucR:18, r:58, n:8, speed:1.2, t:0, color:'#90c090', stroke:'#307030' },
+  { nucR:18, r:82, n:7, speed:0.7, t:0, color:'#40a040', stroke:'#206020' },
+], '+17', '#b0e0b0', '#308030', '#103010', true);
+
+// ─── (b) COMBINED — H shares electron (show 0 electrons, dashed orbit) ───
+Atom('h-combined', [
+  { nucR:14, r:50, n:0, speed:1.6, t:0, color:'#c0d0f0', stroke:'#3050a0' }
+], '+1', '#e0eeff', '#4060b0', '#102050', true);
+
+// ─── (b) COMBINED — Cl now has 8 in outer shell ───────────────────────────
+Atom('cl-combined', [
+  { nucR:18, r:0,  n:0, speed:0,   t:0, color:'#aaa', stroke:'#555' },
+  { nucR:18, r:30, n:2, speed:2.0, t:0, color:'#90c090', stroke:'#307030' },
+  { nucR:18, r:58, n:8, speed:1.2, t:0, color:'#90c090', stroke:'#307030' },
+  { nucR:18, r:82, n:8, speed:0.7, t:0, color:'#40a040', stroke:'#206020' },
+], '+17', '#b0e0b0', '#308030', '#103010', true);
+
+// ─── (c) ION H⁺ — no electrons ───────────────────────────────────────────
+Atom('h-ion', [
+  { nucR:14, r:50, n:0, speed:0, t:0, color:'#f0a0a0', stroke:'#c02020' }
+], '+1', '#ffe0d0', '#c04030', '#600010', true);
+
+// ─── (c) ION Cl⁻ — 18 electrons (extra one!) ─────────────────────────────
+Atom('cl-ion', [
+  { nucR:18, r:0,  n:0, speed:0,   t:0, color:'#aaa', stroke:'#555' },
+  { nucR:18, r:30, n:2, speed:2.0, t:0, color:'#80a0e0', stroke:'#2050b0' },
+  { nucR:18, r:58, n:8, speed:1.2, t:0, color:'#80a0e0', stroke:'#2050b0' },
+  { nucR:18, r:82, n:8, speed:0.7, t:0, color:'#2060d0', stroke:'#1040a0' },
+], '+17', '#c0d8ff', '#2050a0', '#001040', true);
+</script>
+</body>
+</html>
